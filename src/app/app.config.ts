@@ -6,9 +6,14 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { loggingInterceptor } from '../lib/log.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(
+      withInterceptors([loggingInterceptor]),
+    ),
     provideAuth0({
       domain: 'dev-fp320m1awpsaeyz6.eu.auth0.com',
       clientId: 'lgfABpKLBIs9AQLdF7TmpebRVUAUMCVp',
