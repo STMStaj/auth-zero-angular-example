@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { Component, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AuthService, User } from '@auth0/auth0-angular';
+import { DatePickerModule } from 'primeng/datepicker';
 
 @Component({
     selector: 'app-user-profile',
-    imports: [CommonModule],
+    imports: [CommonModule, DatePickerModule, FormsModule],
     template: `
     <ul *ngIf="auth.user$ | async as user">
       @if (user.name) { <li> <strong>name:</strong> <br> {{ user.name }}</li> }
@@ -25,11 +27,20 @@ import { AuthService } from '@auth0/auth0-angular';
       @if (user.phone_number) { <li> <strong>phone_number:</strong> <br> {{ user.phone_number }}</li> }
       @if (user.phone_number_verified) { <li> <strong>phone_number_verified:</strong> <br> {{ user.phone_number_verified }}</li> }
       @if (user.address) { <li> <strong>address:</strong> <br> {{ user.address }}</li> }
-      @if (user.updated_at) { <li> <strong>updated_at:</strong> <br> {{ user.updated_at }}</li> }
+      @if (user.updated_at) { <li> <strong>updated_at:</strong> <br> <p-datepicker [(ngModel)]="date" [defaultDate]="date()" [inline]="true" [disabled]="true" /> </li> }
       @if (user.sub) { <li> <strong>sub:</strong> <br> {{ user.sub }}</li> }
     </ul>`,
     standalone: true
 })
 export class UserProfileComponent {
-    constructor(public auth: AuthService) { }
+    date = signal<Date | null>(null);
+    constructor(public auth: AuthService) {
+        let callback = (value: User | null | undefined) => {
+            let d = new Date(value?.updated_at!);
+            d.setFullYear(d.getFullYear() - 1);
+            d.setDate(d.getDate() - 1);
+            this.date.set(d);
+        };
+        auth.user$.subscribe({ next: callback });
+    }
 }
