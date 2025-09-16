@@ -14,7 +14,7 @@ import { AuthService } from '@auth0/auth0-angular';
       @if (user.nickname) { <li> <strong>nickname:</strong> <br> {{ user.nickname }}</li> }
       @if (user.preferred_username) { <li> <strong>preferred_username:</strong> <br> {{ user.preferred_username }}</li> }
       @if (user.profile) { <li> <strong>profile:</strong> <br> {{ user.profile }}</li> }
-      @if (user.picture) { <li> <strong>picture:</strong> <br> {{ user.picture }}</li> }
+      @if (user.picture) { <li> <strong>picture:</strong> <br> <img width="30px" src="{{ user.picture }}"></li> }
       @if (user.website) { <li> <strong>website:</strong> <br> {{ user.website }}</li> }
       @if (user.email) { <li> <strong>email:</strong> <br> {{ user.email }}</li> }
       @if (user.email_verified) { <li> <strong>email_verified:</strong> <br> {{ user.email_verified }}</li> }
