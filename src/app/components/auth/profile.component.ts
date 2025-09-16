@@ -1,0 +1,35 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
+
+@Component({
+    selector: 'app-user-profile',
+    imports: [CommonModule],
+    template: `
+    <ul *ngIf="auth.user$ | async as user">
+      @if (user.name) { <li> <strong>name:</strong> <br> {{ user.name }}</li> }
+      @if (user.given_name) { <li> <strong>given_name:</strong> <br> {{ user.given_name }}</li> }
+      @if (user.family_name) { <li> <strong>family_name:</strong> <br> {{ user.family_name }}</li> }
+      @if (user.middle_name) { <li> <strong>middle_name:</strong> <br> {{ user.middle_name }}</li> }
+      @if (user.nickname) { <li> <strong>nickname:</strong> <br> {{ user.nickname }}</li> }
+      @if (user.preferred_username) { <li> <strong>preferred_username:</strong> <br> {{ user.preferred_username }}</li> }
+      @if (user.profile) { <li> <strong>profile:</strong> <br> {{ user.profile }}</li> }
+      @if (user.picture) { <li> <strong>picture:</strong> <br> {{ user.picture }}</li> }
+      @if (user.website) { <li> <strong>website:</strong> <br> {{ user.website }}</li> }
+      @if (user.email) { <li> <strong>email:</strong> <br> {{ user.email }}</li> }
+      @if (user.email_verified) { <li> <strong>email_verified:</strong> <br> {{ user.email_verified }}</li> }
+      @if (user.gender) { <li> <strong>gender:</strong> <br> {{ user.gender }}</li> }
+      @if (user.birthdate) { <li> <strong>birthdate:</strong> <br> {{ user.birthdate }}</li> }
+      @if (user.zoneinfo) { <li> <strong>zoneinfo:</strong> <br> {{ user.zoneinfo }}</li> }
+      @if (user.locale) { <li> <strong>locale:</strong> <br> {{ user.locale }}</li> }
+      @if (user.phone_number) { <li> <strong>phone_number:</strong> <br> {{ user.phone_number }}</li> }
+      @if (user.phone_number_verified) { <li> <strong>phone_number_verified:</strong> <br> {{ user.phone_number_verified }}</li> }
+      @if (user.address) { <li> <strong>address:</strong> <br> {{ user.address }}</li> }
+      @if (user.updated_at) { <li> <strong>updated_at:</strong> <br> {{ user.updated_at }}</li> }
+      @if (user.sub) { <li> <strong>sub:</strong> <br> {{ user.sub }}</li> }
+    </ul>`,
+    standalone: true
+})
+export class UserProfileComponent {
+    constructor(public auth: AuthService) { }
+}
