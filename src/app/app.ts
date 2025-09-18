@@ -11,4 +11,8 @@ import { UserProfileComponent } from './components/auth/profile.component';
 })
 export class App {
   protected readonly title = signal('auth-zero');
+
+  get currentYear(): number {
+    return new Date().getFullYear();
+  }
 }

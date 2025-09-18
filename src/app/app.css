@@ -1,0 +1,83 @@
+:host {
+    font-family: system-ui;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 1.5rem;
+}
+
+.app-header {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid navy;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+}
+
+.brand-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: navy;
+    text-decoration: none;
+}
+
+.nav-routes {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-routes a {
+    color: navy;
+    font-weight: 500;
+}
+
+.auth-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid navy;
+}
+
+.auth-group app-auth-button {
+    z-index: 30;
+}
+
+.auth-group:not(:hover) .auth-profile {
+    display: none;
+}
+
+.auth-profile {
+    background-color: white;
+    border-radius: 1rem;
+    border: solid 1px navy;
+    padding: 1rem;
+    position: absolute;
+    top: 20px;
+    z-index: 20;
+    right: 0;
+}
+
+.app-footer {
+    background-color: navy;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.875rem;
+}
