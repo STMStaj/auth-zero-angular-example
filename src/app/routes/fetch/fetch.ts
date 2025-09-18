@@ -1,13 +1,14 @@
-import { JsonPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { Observer } from 'rxjs';
 import { FetchService } from '../../services/fetch.service';
+import { AuthService, User } from '@auth0/auth0-angular';
 
 @Component({
     selector: 'app-root',
     templateUrl: './fetch.html',
     styleUrl: './fetch.css',
-    imports: [JsonPipe]
+    imports: [JsonPipe, AsyncPipe]
 })
 export class Fetch implements OnInit {
     private callback: Observer<Object> = {
@@ -22,13 +23,19 @@ export class Fetch implements OnInit {
     }
     data: WritableSignal<any> = signal({});
 
-    constructor(private service: FetchService) { }
+    constructor(public auth: AuthService, private service: FetchService) { }
 
     ngOnInit() {
-        this.fetchData();
+        this.auth.user$.subscribe(u => {
+                if (u) {
+                    this.fetchData(u);
+                }
+            }
+        );
     }
 
-    fetchData() {
+    fetchData(user: User) {
+        console.log("Request by " + user.email);
         this.service.getData().subscribe(this.callback);
     }
 }
