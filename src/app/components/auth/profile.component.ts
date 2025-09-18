@@ -30,21 +30,25 @@ import { AsyncPipe } from '@angular/common';
         @if (user.phone_number) { <li> <strong>phone_number:</strong> <br> {{ user.phone_number }}</li> }
         @if (user.phone_number_verified) { <li> <strong>phone_number_verified:</strong> <br> {{ user.phone_number_verified }}</li> }
         @if (user.address) { <li> <strong>address:</strong> <br> {{ user.address }}</li> }
-        @if (user.updated_at) { <li> <strong>updated_at:</strong> <br> <p-datepicker [(ngModel)]="date" [defaultDate]="date()" [inline]="true" [disabled]="true" /> </li> }
+        @if (user.updated_at) { <li> <strong>updated_at:</strong> <br> <p-datepicker [(ngModel)]="date" [defaultDate]="date()" [inline]="true" /> </li> }
         @if (user.sub) { <li> <strong>sub:</strong> <br> {{ user.sub }}</li> }
       </ul>
     }
   `,
+  styles: [
+    `p-datepicker {
+      pointer-events: none;
+    }`,
+  ],
   standalone: true
 })
 export class UserProfileComponent {
   date = signal<Date | null>(null);
   constructor(public auth: AuthService) {
-    let callback = (value: User | null | undefined) => {
-      let d = new Date(value?.updated_at!);
-      d.setFullYear(d.getFullYear() - 1);
-      d.setDate(d.getDate() - 1);
-      this.date.set(d);
+    let callback = (user: User | null | undefined) => {
+      if (user?.updated_at) {
+        this.date.set(new Date(user.updated_at));
+      }
     };
     auth.user$.subscribe({ next: callback });
   }
