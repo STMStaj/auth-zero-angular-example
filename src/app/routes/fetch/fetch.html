@@ -1,32 +1,31 @@
 @let user = auth.user$ | async;
 
 @if (user) {
-<p-table [value]="data()" sortField="price" [sortOrder]="-1" [tableStyle]="{ 'min-width': '60rem' }">
+<p-table [value]="data()" sortField="title" [sortOrder]="1" sortMode="multiple" [tableStyle]="{ 'min-width': '60rem' }">
   <!-- Table header -->
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="code" style="width:20%">
+      <th pSortableColumn="userId" style="width:20%">
         <div class="flex items-center gap-2">
-          Code
-          <p-sortIcon field="code" />
+          User ID
+          <p-sortIcon field="userId" />
         </div>
       </th>
-      <th pSortableColumn="name" style="width:20%">
+      <th pSortableColumn="id" style="width:20%">
         <div class="flex items-center gap-2">
-          Name
-          <p-sortIcon field="name" />
+          Post ID
+          <p-sortIcon field="id" />
         </div>
       </th>
-      <th pSortableColumn="price" style="width:20%">
+      <th pSortableColumn="title" style="width:20%">
         <div class="flex items-center gap-2">
-          ID
-          <p-sortIcon field="price" />
+          Title
+          <p-sortIcon field="title" />
         </div>
       </th>
-      <th pSortableColumn="category" style="width:20%">
+      <th style="width:20%">
         <div class="flex items-center gap-2">
-          Category
-          <p-sortIcon field="category" />
+          Body
         </div>
       </th>
     </tr>

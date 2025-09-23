@@ -8,6 +8,7 @@ import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loggingInterceptor } from '../lib/log.interceptor';
+import { definePreset } from '@primeuix/themes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,7 +35,40 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura
+        preset: definePreset(Aura, {
+          semantic: {
+            colorScheme: {
+              light: {
+                primary: {
+                  color: 'navy',
+                  inverseColor: '#ffffff',
+                  hoverColor: '{blue.900}',
+                  activeColor: '{blue.800}'
+                },
+                highlight: {
+                  background: 'navy',
+                  focusBackground: '{blue.700}',
+                  color: '#ffffff',
+                  focusColor: '#ffffff'
+                }
+              },
+              dark: {
+                primary: {
+                  color: '{blue.50}',
+                  inverseColor: 'navy',
+                  hoverColor: '{blue.100}',
+                  activeColor: '{blue.200}'
+                },
+                highlight: {
+                  background: 'rgba(250, 250, 250, .16)',
+                  focusBackground: 'rgba(250, 250, 250, .24)',
+                  color: 'rgba(255,255,255,.87)',
+                  focusColor: 'rgba(255,255,255,.87)'
+                }
+              }
+            }
+          }
+        }),
       }
     }),
     provideBrowserGlobalErrorListeners(),

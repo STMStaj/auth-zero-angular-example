@@ -21,6 +21,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 })
 export class Fetch implements OnInit {
   data: WritableSignal<any[]> = signal(new Array(100).fill({loading: true}));
+  sortKey = "";
 
   constructor(public auth: AuthService, private service: FetchService) {}
 
