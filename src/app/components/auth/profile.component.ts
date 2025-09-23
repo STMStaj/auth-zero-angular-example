@@ -4,10 +4,11 @@ import { AuthService, User } from '@auth0/auth0-angular';
 import { DatePickerModule } from 'primeng/datepicker';
 import { CapitalizePipe } from '../../../lib/capitalize.pipe';
 import { AsyncPipe } from '@angular/common';
+import { AvatarModule } from 'primeng/avatar';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [DatePickerModule, FormsModule, AsyncPipe, CapitalizePipe],
+  imports: [DatePickerModule, FormsModule, AvatarModule, AsyncPipe, CapitalizePipe],
   template: `
     @let user = auth.user$ | async;
     @if (user) {
@@ -19,7 +20,7 @@ import { AsyncPipe } from '@angular/common';
         @if (user.nickname) { <li> <strong>nickname:</strong> <br> {{ user.nickname | capitalize }}</li> }
         @if (user.preferred_username) { <li> <strong>preferred_username:</strong> <br> {{ user.preferred_username | capitalize }}</li> }
         @if (user.profile) { <li> <strong>profile:</strong> <br> {{ user.profile }}</li> }
-        @if (user.picture) { <li> <strong>picture:</strong> <br> <img width="30px" src="{{ user.picture }}"></li> }
+        @if (user.picture) { <li> <strong>picture:</strong> <br> <p-avatar image="{{ user.picture }}" size="xlarge" shape="square" /></li> }
         @if (user.website) { <li> <strong>website:</strong> <br> {{ user.website }}</li> }
         @if (user.email) { <li> <strong>email:</strong> <br> {{ user.email }}</li> }
         @if (user.email_verified) { <li> <strong>email_verified:</strong> <br> {{ user.email_verified }}</li> }

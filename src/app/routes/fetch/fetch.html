@@ -1,5 +1,5 @@
 @let user = auth.user$ | async;
-@if (user) {
+@if (user && Object.keys(data()).length) {
     <h1>Fetched:</h1>
     <div class="container">
         <pre>
@@ -7,5 +7,5 @@
         </pre>
     </div>
 } @else {
-    <h1>You need to be authenticated!</h1>
+    <p-progress-spinner ariaLabel="loading" />
 }

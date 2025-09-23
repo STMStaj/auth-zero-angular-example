@@ -3,12 +3,13 @@ import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { Observer } from 'rxjs';
 import { FetchService } from '../../services/fetch.service';
 import { AuthService, User } from '@auth0/auth0-angular';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
     selector: 'app-root',
     templateUrl: './fetch.html',
     styleUrl: './fetch.css',
-    imports: [JsonPipe, AsyncPipe]
+    imports: [JsonPipe, AsyncPipe, ProgressSpinnerModule]
 })
 export class Fetch implements OnInit {
     private callback: Observer<Object> = {
@@ -22,6 +23,7 @@ export class Fetch implements OnInit {
         },
     }
     data: WritableSignal<any> = signal({});
+    Object = Object;
 
     constructor(public auth: AuthService, private service: FetchService) { }
 
