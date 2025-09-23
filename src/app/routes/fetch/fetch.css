@@ -7,3 +7,8 @@
   font-family: 'Consolas', 'Monaco', monospace;
   color: #ffffff;
 }
+
+p-skeleton {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
