@@ -82,7 +82,7 @@
     font-size: 0.875rem;
 }
 
-a  p-chip {
+a p-chip {
     transition: background-color 0.5s, color 0.5s;
 }
 a:hover p-chip {

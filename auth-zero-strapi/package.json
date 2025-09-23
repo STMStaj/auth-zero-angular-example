@@ -1,0 +1,36 @@
+{
+  "name": "auth-zero-strapi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "strapi": "3.6.11",
+    "strapi-admin": "3.6.11",
+    "strapi-utils": "3.6.11",
+    "strapi-plugin-content-type-builder": "3.6.11",
+    "strapi-plugin-content-manager": "3.6.11",
+    "strapi-plugin-users-permissions": "3.6.11",
+    "strapi-plugin-email": "3.6.11",
+    "strapi-plugin-upload": "3.6.11",
+    "strapi-connector-bookshelf": "3.6.11",
+    "sqlite3": "latest"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "63564f2d-79d8-44da-a91a-73db32aee838"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

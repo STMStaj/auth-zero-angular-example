@@ -1,0 +1,55 @@
+@let user = auth.user$ | async;
+
+@if (user) {
+<p-table [value]="posts()" sortField="title" [sortOrder]="1" sortMode="multiple" [tableStyle]="{ 'min-width': '60rem' }">
+  <!-- Table header -->
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id" style="width:20%">
+        <div class="flex items-center gap-2">
+          ID
+          <p-sortIcon field="id" />
+        </div>
+      </th>
+      <th pSortableColumn="Body" style="width:20%">
+        <div class="flex items-center gap-2">
+          Body
+          <p-sortIcon field="Body" />
+        </div>
+      </th>
+      <th pSortableColumn="Title" style="width:20%">
+        <div class="flex items-center gap-2">
+          Title
+          <p-sortIcon field="Title" />
+        </div>
+      </th>
+      <th style="width:20%">
+        <div class="flex items-center gap-2">
+          Created At
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <!-- Table body -->
+  <ng-template pTemplate="body" let-post>
+    @if (!posts()[0].loading) {
+    <tr>
+      <td>{{ post.id }}</td>
+      <td>{{ post.Title }}</td>
+      <td>{{ post.Body }}</td>
+      <td><p-datepicker [(ngModel)]="date" [defaultDate]="dates().get(post.id)!" [inline]="true" /></td>
+    </tr>
+    } @else {
+    <tr>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /><p-skeleton /><p-skeleton /><p-skeleton /></td>
+    </tr>
+    }
+  </ng-template>
+</p-table>
+} @else {
+<p-progress-spinner ariaLabel="loading" />
+}
