@@ -28,18 +28,17 @@ import { FormsModule } from '@angular/forms';
   ],
 })
 export class Posts implements OnInit {
-  date = signal<Date | null>(null);
-  dates = signal<Map<number, Date>>(new Map());
   posts: WritableSignal<any[]> = signal(new Array(100).fill({ loading: true }));
+  getDate = (date: string) => new Date(date);
 
   constructor(public auth: AuthService, private strapi: StrapiService) {}
 
   ngOnInit() {
-    this.strapi.getContentType('posts').subscribe((posts) => {
+    this.strapi.getContentType('posts').subscribe((posts: Array<any>) => {
+      posts.map(p => p.created_at = new Date(p.created_at));
+      posts.map(p => p.published_at = new Date(p.published_at));
+      posts.map(p => p.updated_at = new Date(p.updated_at));
       this.posts.set(posts);
-      (posts as Array<any>).forEach(p => {
-        this.dates.update(m => m.set(p.id, new Date(p.created_at)));
-      });
     });
   }
 }

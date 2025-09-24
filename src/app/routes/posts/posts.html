@@ -38,7 +38,7 @@
       <td>{{ post.id }}</td>
       <td>{{ post.Title }}</td>
       <td>{{ post.Body }}</td>
-      <td><p-datepicker [(ngModel)]="date" [defaultDate]="dates().get(post.id)!" [inline]="true" /></td>
+      <td><p-datepicker [(ngModel)]="post.created_at" [defaultDate]="post.created_at" [inline]="true" /></td>
     </tr>
     } @else {
     <tr>
