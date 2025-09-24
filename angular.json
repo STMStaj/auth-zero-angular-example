@@ -21,8 +21,14 @@
                 "input": "public"
               }
             ],
+            "scripts": [
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-bash.min.js"
+            ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/markdown/tables.css",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ]
           },
           "configurations": {
@@ -74,8 +80,14 @@
                 "input": "public"
               }
             ],
+            "scripts": [
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-bash.min.js"
+            ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/markdown/tables.css",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ]
           }
         }
