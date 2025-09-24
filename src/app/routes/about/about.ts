@@ -5,12 +5,7 @@ import { CLIPBOARD_OPTIONS, MarkdownComponent, provideMarkdown } from 'ngx-markd
     selector: 'app-root',
     imports: [MarkdownComponent],
     providers: [
-        provideMarkdown({
-            clipboardOptions: {
-                provide: CLIPBOARD_OPTIONS,
-                useValue: {},
-            },
-        }),
+        provideMarkdown()
     ],
     templateUrl: './about.html'
 })
